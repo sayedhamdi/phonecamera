@@ -12,6 +12,8 @@
     </style>
   </head>
   <body>
+    <input type="file" accept="image/*" capture="camera" />
+
     <button id="flip-button">flip</button>
     <video src=""></video>
   </body>
@@ -21,10 +23,11 @@
     let front = false;
     document.getElementById("flip-button").onclick = () => {
       front = !front;
+      console.log(front);
     };
 
     const constraints = {
-      video: { facingMode: front ? "user" : "environment" },
+      video: { facingMode: front },
     };
 
     navigator.mediaDevices
