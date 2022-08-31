@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <video src=""></video>
+  </body>
+  <script>
+    // code for camera browser api in phone
+    // Prefer camera resolution nearest to 1280x720.
+    const constraints = {
+      audio: true,
+      video: { width: 1280, height: 720 },
+    };
+
+    navigator.mediaDevices
+      .getUserMedia(constraints)
+      .then((mediaStream) => {
+        const video = document.querySelector("video");
+        video.srcObject = mediaStream;
+        video.onloadedmetadata = () => {
+          video.play();
+        };
+      })
+      .catch((err) => {
+        // always check for errors at the end.
+        console.error(`${err.name}: ${err.message}`);
+      });
+  </script>
+</html>
