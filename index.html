@@ -12,14 +12,19 @@
     </style>
   </head>
   <body>
+    <button id="flip-button">flip</button>
     <video src=""></video>
   </body>
   <script>
     // code for camera browser api in phone
     // Prefer camera resolution nearest to 1280x720.
+    let front = false;
+    document.getElementById("flip-button").onclick = () => {
+      front = !front;
+    };
+
     const constraints = {
-      audio: true,
-      video: { width: 1280, height: 720 },
+      video: { facingMode: front ? "user" : "environment" },
     };
 
     navigator.mediaDevices
